@@ -65,10 +65,12 @@ nav.main-nav {
 
 nav.main-nav .nav-group {
   position: relative;
+  padding-bottom: 4px;
+  margin-bottom: -4px;
 }
 
 nav.main-nav > .nav-group > a,
-nav.main-nav > .nav-single {
+nav.main-nav > .nav-single > a {
   display: inline-flex;
   align-items: center;
   padding: 8px 12px;
@@ -92,16 +94,18 @@ nav.main-nav a.active {
 .nav-group .dropdown {
   display: none;
   position: absolute;
+  /* Pas d'espace entre le lien et le menu : sinon la souris "sort" de la
+     zone survolée avant d'atteindre le dropdown, qui se referme trop tôt. */
   top: 100%;
   left: 0;
+  margin: 0;
+  padding: 6px;
   background: var(--bg-panel);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 6px;
   min-width: 230px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
   list-style: none;
-  margin: 6px 0 0;
   z-index: 40;
 }
 
@@ -144,7 +148,7 @@ main {
   margin-bottom: 32px;
 }
 .hero h1 { margin-top: 0; font-size: 1.9rem; }
-.hero p, .lead { color: var(--text-muted); max-width: 70ch; }
+.hero p, .lead { color: var(--text-muted); }
 
 h1 { font-size: 1.7rem; }
 h2 { font-size: 1.3rem; margin-top: 2.2em; border-bottom: 1px solid var(--border); padding-bottom: 6px; }

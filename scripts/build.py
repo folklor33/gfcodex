@@ -37,6 +37,7 @@ NAV = [
     ]),
     ("À propos", None, [
         ("Comment fonctionne GFCodex", "a-propos/fonctionnement.html"),
+        ("D'où viennent les données", "a-propos/pipeline-donnees.html"),
         ("Politique de confidentialité", "a-propos/confidentialite.html"),
     ]),
 ]
@@ -54,7 +55,7 @@ HEAD = """<!doctype html>
 <div class="layout">
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="{rel}index.html">GFCodex<span class="dot">.</span>Docs</a>
+    <a class="brand" href="{rel}index.html">GFCodex<span class="dot">.</span>com</a>
     <button class="menu-toggle" type="button" onclick="document.querySelector('nav.main-nav').classList.toggle('open')">Menu ☰</button>
     <nav class="main-nav">
 {nav_html}
@@ -271,7 +272,7 @@ page("a-propos/fonctionnement.html", "Comment fonctionne GFCodex", "Comment fonc
 <p class="lead">GFCodex est un site communautaire, gratuit et non affilié à l'éditeur du jeu, qui met à disposition des joueurs de Grand Fantasia une base de données consultable en ligne.</p>
 
 <h2>Sources des données</h2>
-<p>Les données affichées (objets, monstres, quêtes, compétences, cartes, etc.) sont extraites des fichiers du jeu et mises à jour à chaque nouvelle version disponible. Un panneau accessible depuis l'icône « info » (en haut de page) indique, pour chaque version du jeu (ORIGIN, GLOBAL, VIOLET, GENESIS, EXILE), si la base de données du site est à jour par rapport aux fichiers du jeu, ainsi que la date de la dernière vérification.</p>
+<p>Les données affichées (objets, monstres, quêtes, compétences, cartes, etc.) sont extraites des fichiers du jeu et mises à jour à chaque nouvelle version disponible. Un panneau accessible depuis l'icône « info » (en haut de page) indique, pour chaque version du jeu (ORIGIN, GLOBAL, VIOLET, GENESIS, EXILE), si la base de données du site est à jour par rapport aux fichiers du jeu, ainsi que la date de la dernière vérification. Le détail des grandes étapes de ce traitement est expliqué sur la page <a href="pipeline-donnees.html">D'où viennent les données</a>.</p>
 
 <h2>Versions du jeu prises en charge</h2>
 <p>Grand Fantasia existe sous plusieurs versions (ORIGIN, GLOBAL, VIOLET, GENESIS, EXILE), dont le contenu diffère. GFCodex permet de basculer entre ces versions via les boutons situés en haut de chaque page ; les données affichées (objets, monstres, compétences, sprites, etc..) s'adaptent automatiquement à la version choisie.</p>
@@ -288,6 +289,35 @@ page("a-propos/fonctionnement.html", "Comment fonctionne GFCodex", "Comment fonc
 <li>Dons via Liberapay (lien disponible en haut et en bas de page).</li>
 <li>Code source sur GitHub (lien disponible en pied de page).</li>
 </ul>
+''')
+
+page("a-propos/pipeline-donnees.html", "D'où viennent les données", "D'où viennent les données du site", '''
+<div class="breadcrumb"><a href="../index.html">Accueil</a> / À propos / D'où viennent les données</div>
+<h1>D'où viennent les données du site</h1>
+<p class="lead">Par souci de transparence envers la communauté, voici les grandes lignes de la manière dont le contenu de GFCodex est produit à partir du jeu. Cette page reste volontairement générale : les outils, scripts et méthodes précises ne sont pas détaillés ici.</p>
+
+<h2>1. Récupération des fichiers du jeu</h2>
+<p>Pour chaque version prise en charge (ORIGIN, GLOBAL, VIOLET, GENESIS, EXILE), les fichiers de données publiés par le client officiel du jeu sont récupérés. C'est le point de départ de toute mise à jour du site : tant qu'une nouvelle version des fichiers du jeu n'est pas disponible, GFCodex n'a rien de nouveau à traiter.</p>
+
+<h2>2. Extraction des données brutes</h2>
+<p>Le client du jeu stocke ses informations (objets, monstres, quêtes, compétences, cartes, textes…) dans des fichiers de données internes. Ces fichiers sont extraits puis convertis dans un format exploitable, afin d'en tirer les informations « brutes » (statistiques, identifiants, relations entre les éléments du jeu) ainsi que les textes correspondants (noms, descriptions), qui existent en plusieurs langues.</p>
+
+<h2>3. Nettoyage et mise en forme</h2>
+<p>Les données extraites sont ensuite nettoyées et normalisées : correction d'encodage, suppression des entrées invalides ou obsolètes, harmonisation du format entre les différentes versions du jeu (qui ne stockent pas toujours leurs données de la même façon). Cette étape garantit que les informations affichées sur le site sont cohérentes d'une version à l'autre.</p>
+
+<h2>4. Fusion des données et des traductions</h2>
+<p>Les données brutes (statistiques, identifiants) et les textes traduits (noms, descriptions) sont ensuite rassemblés pour produire un jeu de fichiers de travail complet et directement exploitable, prêt à alimenter le site.</p>
+
+<h2>5. Cas particulier des cartes</h2>
+<p>Les cartes et zones du jeu suivent un traitement dédié : les informations de scène (topologie, points d'intérêt, zones d'apparition) sont extraites séparément afin de reconstituer la structure du monde utilisée par le Codex des cartes.</p>
+
+<h2>6. Import dans la base de données du site</h2>
+<p>Une fois produits, ces fichiers de travail sont importés dans la base de données de GFCodex, qui alimente ensuite l'ensemble des pages du Codex et des guides présentées dans cette documentation.</p>
+
+<h2>7. Suivi des mises à jour</h2>
+<p>À chaque nouvelle version du jeu, ce pipeline est rejoué pour maintenir les données du site à jour. Le panneau accessible depuis l'icône « info » en haut du site indique, pour chaque version, si GFCodex est synchronisé avec les derniers fichiers du jeu ainsi que la date de la dernière vérification (voir <a href="fonctionnement.html">Comment fonctionne GFCodex</a>).</p>
+
+<div class="callout">Cette page décrit le principe général du pipeline par souci de transparence. Les outils, dépôts et méthodes techniques utilisés en interne ne sont volontairement pas détaillés.</div>
 ''')
 
 page("a-propos/confidentialite.html", "Politique de confidentialité", "Politique de confidentialité", '''
