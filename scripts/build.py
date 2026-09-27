@@ -52,17 +52,19 @@ HEAD = """<!doctype html>
 </head>
 <body>
 <div class="layout">
-<aside class="sidebar">
-  <a class="brand" href="{rel}index.html">GFCodex</a>
-  <span class="brand-sub">Documentation du site</span>
-  <nav>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="{rel}index.html">GFCodex<span class="dot">.</span>Docs</a>
+    <button class="menu-toggle" type="button" onclick="document.querySelector('nav.main-nav').classList.toggle('open')">Menu ☰</button>
+    <nav class="main-nav">
 {nav_html}
-  </nav>
-</aside>
+    </nav>
+  </div>
+</header>
 <main>
 {content}
 <footer class="page-footer">
-  <p>Documentation non officielle du site GFCodex — Grand Fantasia est une marque de X-LEGEND Entertainment Co., Ltd.</p>
+  <p>Documentation du site GFCodex — Grand Fantasia est une marque de X-LEGEND Entertainment Co., Ltd.</p>
 </footer>
 </main>
 </div>
@@ -80,14 +82,18 @@ def build_nav_html(current_path, rel):
         label, href, children = entry
         if children is None:
             active = " active" if href == current_path else ""
-            out.append(f'    <ul><li><a class="{active.strip()}" href="{rel}{href}">{label}</a></li></ul>')
+            out.append(f'      <div class="nav-single"><a class="{active.strip()}" href="{rel}{href}">{label}</a></div>')
         else:
-            out.append(f"    <h3>{label}</h3>")
-            out.append("    <ul>")
+            group_active = any(chref == current_path for _, chref in children)
+            active = " active" if group_active else ""
+            out.append(f'      <div class="nav-group">')
+            out.append(f'        <a href="{rel}{children[0][1]}" class="{active.strip()}">{label}</a>')
+            out.append(f'        <ul class="dropdown">')
             for clabel, chref in children:
-                active = " active" if chref == current_path else ""
-                out.append(f'      <li><a class="{active.strip()}" href="{rel}{chref}">{clabel}</a></li>')
-            out.append("    </ul>")
+                cactive = " active" if chref == current_path else ""
+                out.append(f'          <li><a class="{cactive.strip()}" href="{rel}{chref}">{clabel}</a></li>')
+            out.append("        </ul>")
+            out.append("      </div>")
     return "\n".join(out)
 
 def page(path, title, description, content):
@@ -268,7 +274,7 @@ page("a-propos/fonctionnement.html", "Comment fonctionne GFCodex", "Comment fonc
 <p>Les données affichées (objets, monstres, quêtes, compétences, cartes, etc.) sont extraites des fichiers du jeu et mises à jour à chaque nouvelle version disponible. Un panneau accessible depuis l'icône « info » (en haut de page) indique, pour chaque version du jeu (ORIGIN, GLOBAL, VIOLET, GENESIS, EXILE), si la base de données du site est à jour par rapport aux fichiers du jeu, ainsi que la date de la dernière vérification.</p>
 
 <h2>Versions du jeu prises en charge</h2>
-<p>Grand Fantasia existe sous plusieurs versions (ORIGIN, GLOBAL, VIOLET/Classic, GENESIS, EXILE), dont le contenu diffère. GFCodex permet de basculer entre ces versions via les boutons situés en haut de chaque page ; les données affichées (objets, monstres, XP, etc.) s'adaptent automatiquement à la version choisie.</p>
+<p>Grand Fantasia existe sous plusieurs versions (ORIGIN, GLOBAL, VIOLET, GENESIS, EXILE), dont le contenu diffère. GFCodex permet de basculer entre ces versions via les boutons situés en haut de chaque page ; les données affichées (objets, monstres, compétences, sprites, etc..) s'adaptent automatiquement à la version choisie.</p>
 
 <h2>Langues</h2>
 <p>Le site est disponible en plusieurs langues, sélectionnables via le menu de langue en haut de page.</p>

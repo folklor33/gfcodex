@@ -9,44 +9,52 @@
 </head>
 <body>
 <div class="layout">
-<aside class="sidebar">
-  <a class="brand" href="../index.html">GFCodex</a>
-  <span class="brand-sub">Documentation du site</span>
-  <nav>
-    <ul><li><a class="" href="../index.html">Accueil</a></li></ul>
-    <h3>Codex</h3>
-    <ul>
-      <li><a class="" href="../codex/objets.html">Objets</a></li>
-      <li><a class="" href="../codex/competences.html">Compétences</a></li>
-      <li><a class="" href="../codex/monstres.html">Monstres</a></li>
-      <li><a class="" href="../codex/pnjs.html">PNJ</a></li>
-      <li><a class="" href="../codex/quetes.html">Quêtes</a></li>
-      <li><a class="" href="../codex/titres.html">Titres</a></li>
-      <li><a class="" href="../codex/enchantements.html">Effets d'enchantement</a></li>
-      <li><a class="" href="../codex/elfes.html">Sprites (Elfes)</a></li>
-      <li><a class="" href="../codex/cartes.html">Cartes</a></li>
-      <li><a class="" href="../codex/recherche.html">Recherche globale</a></li>
-    </ul>
-    <h3>Guides & Ressources</h3>
-    <ul>
-      <li><a class="" href="../ressources/cabine-essayage.html">Cabine d'essayage</a></li>
-      <li><a class="active" href="../ressources/hauts-faits.html">Hauts faits (Succès)</a></li>
-      <li><a class="" href="../ressources/agenda.html">Agenda des activités</a></li>
-      <li><a class="" href="../ressources/archives.html">Archives (Collections)</a></li>
-      <li><a class="" href="../ressources/recoltes-sprites.html">Récoltes de sprites</a></li>
-      <li><a class="" href="../ressources/experience.html">Valeur d'XP par niveau</a></li>
-      <li><a class="" href="../ressources/combinaisons.html">Combinaisons d'objets</a></li>
-      <li><a class="" href="../ressources/specialisations.html">Guide des spés (Masters)</a></li>
-      <li><a class="" href="../ressources/talents.html">Combinaisons de talents</a></li>
-      <li><a class="" href="../ressources/changelog.html">Changelog</a></li>
-    </ul>
-    <h3>À propos</h3>
-    <ul>
-      <li><a class="" href="../a-propos/fonctionnement.html">Comment fonctionne GFCodex</a></li>
-      <li><a class="" href="../a-propos/confidentialite.html">Politique de confidentialité</a></li>
-    </ul>
-  </nav>
-</aside>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">GFCodex<span class="dot">.</span>Docs</a>
+    <button class="menu-toggle" type="button" onclick="document.querySelector('nav.main-nav').classList.toggle('open')">Menu ☰</button>
+    <nav class="main-nav">
+      <div class="nav-single"><a class="" href="../index.html">Accueil</a></div>
+      <div class="nav-group">
+        <a href="../codex/objets.html" class="">Codex</a>
+        <ul class="dropdown">
+          <li><a class="" href="../codex/objets.html">Objets</a></li>
+          <li><a class="" href="../codex/competences.html">Compétences</a></li>
+          <li><a class="" href="../codex/monstres.html">Monstres</a></li>
+          <li><a class="" href="../codex/pnjs.html">PNJ</a></li>
+          <li><a class="" href="../codex/quetes.html">Quêtes</a></li>
+          <li><a class="" href="../codex/titres.html">Titres</a></li>
+          <li><a class="" href="../codex/enchantements.html">Effets d'enchantement</a></li>
+          <li><a class="" href="../codex/elfes.html">Sprites (Elfes)</a></li>
+          <li><a class="" href="../codex/cartes.html">Cartes</a></li>
+          <li><a class="" href="../codex/recherche.html">Recherche globale</a></li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <a href="../ressources/cabine-essayage.html" class="active">Guides & Ressources</a>
+        <ul class="dropdown">
+          <li><a class="" href="../ressources/cabine-essayage.html">Cabine d'essayage</a></li>
+          <li><a class="active" href="../ressources/hauts-faits.html">Hauts faits (Succès)</a></li>
+          <li><a class="" href="../ressources/agenda.html">Agenda des activités</a></li>
+          <li><a class="" href="../ressources/archives.html">Archives (Collections)</a></li>
+          <li><a class="" href="../ressources/recoltes-sprites.html">Récoltes de sprites</a></li>
+          <li><a class="" href="../ressources/experience.html">Valeur d'XP par niveau</a></li>
+          <li><a class="" href="../ressources/combinaisons.html">Combinaisons d'objets</a></li>
+          <li><a class="" href="../ressources/specialisations.html">Guide des spés (Masters)</a></li>
+          <li><a class="" href="../ressources/talents.html">Combinaisons de talents</a></li>
+          <li><a class="" href="../ressources/changelog.html">Changelog</a></li>
+        </ul>
+      </div>
+      <div class="nav-group">
+        <a href="../a-propos/fonctionnement.html" class="">À propos</a>
+        <ul class="dropdown">
+          <li><a class="" href="../a-propos/fonctionnement.html">Comment fonctionne GFCodex</a></li>
+          <li><a class="" href="../a-propos/confidentialite.html">Politique de confidentialité</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
 <main>
 
 <div class="breadcrumb"><a href="../index.html">Accueil</a> / Ressources / Hauts faits (Succès)</div>
@@ -56,7 +64,7 @@
 <ul><li>Parcours des catégories de succès et de leurs conditions d'obtention.</li></ul>
 
 <footer class="page-footer">
-  <p>Documentation non officielle du site GFCodex — Grand Fantasia est une marque de X-LEGEND Entertainment Co., Ltd.</p>
+  <p>Documentation du site GFCodex — Grand Fantasia est une marque de X-LEGEND Entertainment Co., Ltd.</p>
 </footer>
 </main>
 </div>
